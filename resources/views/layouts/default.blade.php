@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
   <title>@yield('title','Sample App') -- Laravel 教程</title>
   <link rel="stylesheet" href="/css/app.css"/>
 </head>
@@ -14,6 +15,6 @@
        </div>
 
    </div>
-
+   <script src="/js/app.js"></script>
 </body>
 </html>
