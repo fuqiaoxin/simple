@@ -26,8 +26,16 @@ class SessionsController extends Controller
         ]);
 
         if(Auth::attempt($credentials,$request->has('remember'))){
-            session()->flash('success',trans('webs.welcome_back'));
-            return redirect()->intended(route('users.show',[Auth::user()]));
+            if(Auth::user()->activated){
+                session()->flash('success',trans('webs.welcome_back'));
+                return redirect()->intended(route('users.show',[Auth::user()]));
+            }else{  // 未激活
+                Auth::logout();
+                session()->flash('warning',trans('webs.active_not'));
+                return redirect('/');
+            }
+
+
         }else{  // 登录失败
             session()->flash('danger',trans('auth.failed'));
             return redirect()->back();
